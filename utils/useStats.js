@@ -7,7 +7,6 @@ function useStats (url) {
     useEffect (() => {
         async function fetchData () {
             setError();
-            console.log('fetching data!');
             const data = await fetch(url)
                 .then(res => res.json())
                 .catch(err => {

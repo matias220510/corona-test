@@ -9,7 +9,6 @@ const BlockWrapper = styled.div`
 `;
 
 const StatBlock = styled.div`
-    background: lightgray;
     flex-basis: calc(33.333% - 20px);
     margin: 10px;
     border-radius: 2rem;
@@ -17,6 +16,20 @@ const StatBlock = styled.div`
     padding: 2rem;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    ${props => props.confirmed && `
+        background-image: linear-gradient(-20deg,#ff9900 0%,#ff0000bf 100%);
+    `}
+
+    ${props => props.recovered && `
+        background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+    `}
+
+    ${props => props.deaths && `
+        background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    `}
+    
 `;
 
 export default function Stats ({url}) {
@@ -26,15 +39,15 @@ export default function Stats ({url}) {
     if (error) return <p>Error!</p>;
     return (
         <BlockWrapper>
-            <StatBlock className="statBlock">
+            <StatBlock confirmed>
                 <h3>Confirmados</h3>
                 <span>{stats.confirmed.value}</span>
             </StatBlock>
-            <StatBlock className="statBlock">
+            <StatBlock recovered>
                 <h3>Recuperados</h3>
                 <span>{stats.recovered.value}</span>
             </StatBlock>
-            <StatBlock className="statBlock">
+            <StatBlock deaths>
                 <h3>Muertes</h3>
                 <span>{stats.deaths.value}</span>
             </StatBlock>
